@@ -17,8 +17,19 @@ const DressItem = ({ item }) => {
                     <Image style={{ width: 70, height: 70 }} source={{ uri: item.image }} />
                 </View>
                 <View>
-                    <Text>{item.name}</Text>
-                    <Text>{item.price}</Text>
+                    <Text style={{
+                        width: 83,
+                        fontSize: 17,
+                        fontWeight: '500',
+                        marginBottom: '2%'
+                    }}>{item.name}</Text>
+                    <Text
+                        style={{
+                            width: 60,
+                            color: 'gray',
+                            fontSize: 15
+                        }}
+                    >	{'\u20B9'}{item.price}</Text>
                 </View>
 
                 <Pressable style={{ width: 80 }}>
@@ -28,7 +39,10 @@ const DressItem = ({ item }) => {
                         marginVertical: 10,
                         color: '#088f8f',
                         textAlign: 'center',
-                        padding:5
+                        padding: 5,
+                        borderRadius: 4,
+                        fontSize: 17,
+                        fontWeight: 'bold'
                     }}>Add</Text>
                 </Pressable>
             </Pressable>

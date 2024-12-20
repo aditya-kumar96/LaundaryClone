@@ -6,6 +6,8 @@ import { Feather } from '@expo/vector-icons'
 import Carousel from '../components/Carousel';
 import Services from '../components/Services';
 import DressItem from '../components/DressItem';
+import { useDispatch, useSelector } from 'react-redux';
+import { getProducts } from '../redux/ProductReducer';
 
 const HomeScreen = () => {
   const [displayCurrentAddress, setdisplayCurrentAddress] = useState('we are loading your location');
@@ -14,6 +16,9 @@ const HomeScreen = () => {
     checkIfLocaitonEnabled();
     getCurrentLocation();
   }, [])
+
+  const cart = useSelector((state) => state.cart.cart);
+  console.log('cart is ', cart);
 
   const checkIfLocaitonEnabled = async () => {
     let enabled = await Location.hasServicesEnabledAsync();
@@ -44,6 +49,16 @@ const HomeScreen = () => {
       }
     }
   }
+  const dispatch = useDispatch()
+  const product = useSelector((state) => state.product.product);
+  useEffect(() => {
+    if (product.length > 0) return
+    const fetchProducts = () => {
+      services.map((service) => dispatch(getProducts(service)))
+    }
+    fetchProducts();
+  }, [])
+  console.log('products', product);
 
   const services = [
     {
@@ -139,8 +154,8 @@ const HomeScreen = () => {
         {/* Services Component */}
         <Services />
         {/* Render all products */}
-        {services.map((item,index)=>(
-          <DressItem item={item} key ={index}/>
+        {product.map((item, index) => (
+          <DressItem item={item} key={index} />
         ))}
       </ScrollView>
     </SafeAreaView>
