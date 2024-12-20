@@ -1,0 +1,28 @@
+{
+  "name": "washtime",
+  "license": "0BSD",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "patch": "npx patch-package",
+    "postinstall": "patch-package"
+  },
+  "dependencies": {
+    "@coder-shubh/react-native-image-slider": "^1.0.6",
+    "deprecated-react-native-prop-types": "^5.0.0",
+    "expo": "~52.0.9",
+    "expo-location": "~18.0.2",
+    "expo-status-bar": "~2.0.0",
+    "react": "18.3.1",
+    "react-native": "0.76.2",
+    "react-native-vector-icons": "^10.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.0"
+  },
+  "private": true
+}
