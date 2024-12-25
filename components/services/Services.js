@@ -1,5 +1,6 @@
 import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import { styles } from './ServicesStyle';
 
 const Services = () => {
     const services = [
@@ -30,14 +31,11 @@ const Services = () => {
 
 
     return (
-        <View style={{
-            padding: 10,
-
-        }}>
-            <Text style={{ fontSize: 16, fontWeight: "500", marginBottom: 7 }}>Services Available</Text>
+        <View style={styles.container}>
+            <Text style={styles.serviceText}>Services Available</Text>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                 {services.map((service, index) => (
-                    <Pressable key={index} style={{ margin: 10, backgroundColor: 'white', padding: 20, borderRadius: 7 }}>
+                    <Pressable key={index} style={styles.servicename}>
                         <Image
                             source={{ uri: service.image }}
                             style={{ width: 70, height: 70 }}
@@ -52,5 +50,3 @@ const Services = () => {
 }
 
 export default Services
-
-const styles = StyleSheet.create({})

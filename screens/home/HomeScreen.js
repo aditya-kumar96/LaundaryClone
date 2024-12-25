@@ -3,11 +3,12 @@ import React, { useEffect, useState } from 'react'
 import * as Location from 'expo-location'
 import Entypo from '@expo/vector-icons/Entypo';
 import { Feather } from '@expo/vector-icons'
-import Carousel from '../components/Carousel';
-import Services from '../components/Services';
-import DressItem from '../components/DressItem';
+import Carousel from '../../components/carousel/Carousel';
+import Services from '../../components/services/Services';
+import DressItem from '../../components/dressitem/DressItem';
 import { useDispatch, useSelector } from 'react-redux';
-import { getProducts } from '../redux/ProductReducer';
+import { getProducts } from '../../redux/ProductReducer';
+import { styles } from './HomeStyle';
 
 const HomeScreen = () => {
   const [displayCurrentAddress, setdisplayCurrentAddress] = useState('we are loading your location');
@@ -117,35 +118,26 @@ const HomeScreen = () => {
 
   return (
     <SafeAreaView
-      style={{ backgroundColor: '#F0F0F0' }}
+      style={styles.container}
     >
       <ScrollView>
         {/* Location and Profile */}
-        <View style={{ flexDirection: 'row', alignItems: 'center', padding: 10 }}>
+        <View style={styles.locationView}>
           <Entypo name="location-pin" size={24} color="#fd5c63" />
           <View>
-            <Text style={{ fontSize: 18, fontWeight: '600' }}>Home</Text>
+            <Text style={styles.locationText}>Home</Text>
             <Text>{displayCurrentAddress}</Text>
           </View>
-          <Pressable style={{ marginLeft: 'auto', marginRight: 7 }}>
+          <Pressable style={styles.locationImg}>
             <Image
               source={{ uri: "https://lh3.googleusercontent.com/ogw/AF2bZyhS4fDIVYAf34q6fr0SKFlbDiesU8NR6Rq2vrFtCzewLA=s32-c-mo", }}
-              style={{ width: 40, height: 40, borderRadius: 20, borderWidth: 0.2 }}
+              style={styles.imgStyle}
             />
           </Pressable>
         </View>
         {/* Search Bar  */}
         <View
-          style={{
-            padding: 10,
-            margin: 10,
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            borderWidth: 0.8,
-            borderColor: "#c0c0c0",
-            borderRadius: 7
-          }}>
+          style={styles.searchView}>
           <TextInput placeholder='Search for item or more' />
           <Feather name='search' size={24} color="#fd5c63" />
         </View>
