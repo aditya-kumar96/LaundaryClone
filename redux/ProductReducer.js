@@ -17,8 +17,8 @@ export const productSlice = createSlice({
             const decrementQuantity = state.product.find((item) => item.id === action.payload.id);
             if (decrementQuantity.quantity == 1) {
                 decrementQuantity.quantity = 0;
-                const removeItem = state.product.filter((item) => item.id !== action.payload.id);
-                state.product = removeItem
+                // const removeItem = state.product.filter((item) => item.id !== action.payload.id);
+                // state.product = removeItem
             }
             else {
                 decrementQuantity.quantity--

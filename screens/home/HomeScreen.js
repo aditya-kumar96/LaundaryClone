@@ -9,8 +9,10 @@ import DressItem from '../../components/dressitem/DressItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from '../../redux/ProductReducer';
 import { styles } from './HomeStyle';
+import { useNavigation } from '@react-navigation/native';
 
 const HomeScreen = () => {
+  const navigation = useNavigation();
   const [displayCurrentAddress, setdisplayCurrentAddress] = useState('we are loading your location');
   const [locationServiceEnabled, setlocationServiceEnabled] = useState(false);
   useEffect(() => {
@@ -20,6 +22,8 @@ const HomeScreen = () => {
 
   const cart = useSelector((state) => state.cart.cart);
   console.log('cart is ', cart);
+  const total = cart.map((item) => item.quantity * item.price).reduce((curr, prev) => curr + prev, 0);
+
 
   const checkIfLocaitonEnabled = async () => {
     let enabled = await Location.hasServicesEnabledAsync();
@@ -117,10 +121,8 @@ const HomeScreen = () => {
 
 
   return (
-    <SafeAreaView
-      style={styles.container}
-    >
-      <ScrollView>
+    <>
+      <ScrollView style={styles.container}>
         {/* Location and Profile */}
         <View style={styles.locationView}>
           <Entypo name="location-pin" size={24} color="#fd5c63" />
@@ -150,7 +152,47 @@ const HomeScreen = () => {
           <DressItem item={item} key={index} />
         ))}
       </ScrollView>
-    </SafeAreaView>
+      {total !== 0 &&
+        <Pressable
+          onPress={() => navigation.navigate('PickUp')}
+          style={{
+            backgroundColor: '#088F8F',
+            padding: 10,
+            marginBottom: 40,
+            margin: 15,
+            borderRadius: 7,
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between'
+          }}>
+          <View>
+            <Text style={{
+              fontSize: 17,
+              fontWeight: '600',
+              color: 'white',
+
+            }}>{cart.length} items | {'\u20B9'}{total}</Text>
+            <Text
+              style={{
+                fontSize: 14,
+                fontWeight: '400',
+                marginVertical: 6
+              }}
+            >extra charges might apply</Text>
+          </View>
+
+          <Pressable>
+            <Text style={{
+              fontSize: 17,
+              fontWeight: '600',
+              color: 'white'
+            }}>Proceed to Pickup</Text>
+          </Pressable>
+
+        </Pressable>
+      }
+
+    </>
   )
 }
 

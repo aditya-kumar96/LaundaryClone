@@ -19,7 +19,7 @@ const DressItem = ({ item }) => {
     }
     const DecrementQuantity = () => {
         dispatch(decrementQty(item)) //cart decrement
-        dispatch(decrementQuantity(item)) //cart Decrement
+        dispatch(decrementQuantity(item)) //Productcart Decrement
     }
     return (
         <View>
