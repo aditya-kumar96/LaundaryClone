@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import HomeScreen from './screens/home/HomeScreen';
 import { Provider } from 'react-redux';
 import store from './redux/store';
-import StackNavigator from './screens/home/navigation/StackNavigator';
+import StackNavigator from './screens/navigation/StackNavigator';
 
 export default function App() {
   return (

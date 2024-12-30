@@ -181,7 +181,9 @@ const HomeScreen = () => {
             >extra charges might apply</Text>
           </View>
 
-          <Pressable>
+          <Pressable
+            onPress={() => navigation.navigate('PickUp')}
+          >
             <Text style={{
               fontSize: 17,
               fontWeight: '600',
